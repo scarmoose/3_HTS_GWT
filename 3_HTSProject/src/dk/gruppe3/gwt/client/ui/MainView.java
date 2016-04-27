@@ -6,41 +6,71 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.AbsolutePanel;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HasText;
+import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
+
+import opr.client.ui.UnitWeightView;
+
 
 public class MainView extends Composite implements HasText {
 
-	private static MainViewUiBinder uiBinder = GWT.create(MainViewUiBinder.class);
+	private VerticalPanel content = new VerticalPanel();
+	private MenuView menu;
+	private Login login;
+	private AbsolutePanel aPanel = new AbsolutePanel();
+	private VerticalPanel vPanel = new VerticalPanel();
+	private HorizontalPanel hPanel = new HorizontalPanel();
 
-	interface MainViewUiBinder extends UiBinder<Widget, MainView> {
-	}
-
+	
 	public MainView() {
-		initWidget(uiBinder.createAndBindUi(this));
+		initWidget(aPanel);
+		aPanel.setSize(Integer.toString(Window.getClientWidth()) + "px",
+		Integer.toString(Window.getClientHeight()) + "px");
+		aPanel.clear();
+		aPanel.add(vPanel);
+		aPanel.add(hPanel);
+		menu = new MenuView(this);
+		login = new Login(this);
+		hPanel.add(login);
+		aPanel.setWidgetPosition(hPanel, Window.getClientWidth()/2 - 156/2, 70);
 	}
 
-	@UiField
-	Button button;
-
-	public MainView(String firstName) {
-		initWidget(uiBinder.createAndBindUi(this));
-		button.setText(firstName);
+	public void openLogin() throws Exception{
+		content.clear();
+		vPanel.clear();
+		hPanel.clear();
+		vPanel.add(menu);
+		Label label = new Label("Welcome User");
+		hPanel.add(label);
+		label.addStyleName("gwt-title");
+		aPanel.setWidgetPosition(vPanel, 10, 70);
+		aPanel.setWidgetPosition(hPanel, Window.getClientWidth()/2 - 156/2, 30);
 	}
-
-	@UiHandler("button")
-	void onClick(ClickEvent e) {
-		Window.alert("Hello!");
+	
+	public void openLogout() throws Exception{
+		content.clear();
+		vPanel.clear();
+		hPanel.clear();
+		hPanel.add(login);
+		aPanel.setWidgetPosition(hPanel, Window.getClientWidth()/2 - 156/2, 70);
 	}
-
-	public void setText(String text) {
-		button.setText(text);
-	}
-
+	@Override
 	public String getText() {
-		return button.getText();
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public void setText(String text) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

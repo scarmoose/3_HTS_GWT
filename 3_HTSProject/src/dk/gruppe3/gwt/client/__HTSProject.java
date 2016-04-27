@@ -1,6 +1,13 @@
 package dk.gruppe3.gwt.client;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.RootPanel;
 
 import dk.gruppe3.gwt.client.ui.MainView;
 
@@ -18,6 +25,13 @@ public class __HTSProject implements EntryPoint {
 	 * This is the entry point method.
 	 */
 	public void onModuleLoad() {
-		MainView main = new MainView();
+		MainView mainView;
+		try {
+			mainView = new MainView();
+			RootPanel.get().add(mainView);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

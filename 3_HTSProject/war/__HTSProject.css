@@ -15,6 +15,18 @@ h1 {
   font-size: 16pt;
 }
 
+.gwt-title{
+	font-size:200%;
+	font-weight: bold;
+}
+
+.gwt-roomname{ 
+   font-size: 100%; 
+   font-weight: bold;
+   text-align: center;
+   vertical-align: middle; 
+}
+
 /** Most GWT widgets already have a style name defined */
 .gwt-DialogBox {
   width: 400px;
