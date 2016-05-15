@@ -34,6 +34,7 @@ public class Login extends Composite {
 	PasswordTextBox password = new PasswordTextBox();
 	
 	private UserServiceImpl UserS = new UserServiceImpl();
+	
 
 	public Login(final MainView main){
 		this.initWidget(vPanel);
@@ -85,11 +86,52 @@ public class Login extends Composite {
 				timer.schedule(500);
 			}	
 		});
+		
+		Button btn2 = new Button("Create User", new ClickHandler() {
+			@Override
+			public void onClick(ClickEvent event) {
+				UserS.CreateUser();
+				Timer timer = new Timer() {
+					public void run() {
+						runtimes++;
+						if (runtimes==100000)
+						{
+							Window.alert("100000 forsoeg");
+						}
+						if(user.getUserN()=="")
+						{
+							run();
+						}
+						else if(user.getUserN()=="fejl" || user.getUserN()=="ERROR" || user.getSessionkey()=="failed")
+						{
+							Window.alert("Brugernavn passer ikke med kodeord. Proev igen.");
+						}
+						else if(user.getUserN()!="")
+						{
+							try {
+								Window.alert(user.getUserN());
+								clear();
+							} 
+							catch (Exception e) 
+							{
+								e.printStackTrace();
+							}
+						}
+					}
+				};
+				timer.schedule(500);
+			}	
+		});
 
 		vPanel.add(btnOne);	
 		btnOne.addStyleName("btnOne");
 		vPanel.setBorderWidth(2);
 		btnOne.setPixelSize(160, 30);
+		
+		vPanel.add(btn2);	
+		btn2.addStyleName("btnOne");
+		vPanel.setBorderWidth(2);
+		btn2.setPixelSize(160, 30);
 
 
 	}

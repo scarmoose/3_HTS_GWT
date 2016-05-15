@@ -30,6 +30,7 @@
   <!-- <source path='shared'/> -->
   <source path='shared'/>
   <source path='server'/>
+  <source path='http'/>
 
   <!-- allow Super Dev Mode -->
   <add-linker name="xsiframe"/>
